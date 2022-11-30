@@ -5,12 +5,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-//import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
+import { computed, defineComponent } from "vue";
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router';
+import { auth } from "@/firebase/config";
 
 export default defineComponent({
   name: "Home",
   components: {
   },
+  setup() {
+
+    const store = useStore()
+    const router = useRouter()
+
+    auth.onAuthStateChanged(user => {
+      store.dispatch("fetchUser", user);
+    });
+
+    const user = computed(() => {
+      return store.getters.user;
+    });
+
+    const signOut = async () => {
+      await store.dispatch('logOut')
+      router.push('/')
+    }
+
+    return { user, signOut }
+  }
+
 });
 </script>
