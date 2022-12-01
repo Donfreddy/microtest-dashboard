@@ -1,70 +1,50 @@
-import { createStore } from "vuex";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut
-} from 'firebase/auth'
-// import {collection, setDoc, addDoc, getDoc, doc} from 'firebase/firestore'
+import { createStore, Store as VuexStore, CommitOptions, DispatchOptions } from "vuex";
+import { Getters, getters } from "./getters";
+import { Mutations, mutations } from "./mutations";
+import { Actions, actions } from "./actions";
 
-import { auth, db } from '@/firebase/config'
+export interface State {
+  user: UserState
+}
 
-export default createStore({
-  state: {
-    user: {
-      loggedIn: false,
-      data: null
-    }
-  },
+// Create initial state
+const state: State = {
+  user: {
+    loggedIn: false,
+    data: null
+  }
+}
+
+//setup store type
+export type Store = Omit<
+  VuexStore<State>,
+  'getters' | 'commit' | 'dispatch'
+> & {
+  commit<K extends keyof Mutations, P extends Parameters<Mutations[K]>[1]>(
+    key: K,
+    payload: P,
+    options?: CommitOptions
+  ): ReturnType<Mutations[K]>
+} & {
+  dispatch<K extends keyof Actions>(
+    key: K,
+    payload: Parameters<Actions[K]>[1],
+    options?: DispatchOptions
+  ): ReturnType<Actions[K]>
+} & {
   getters: {
-    user(state) {
-      return state.user
-    }
-  },
-  mutations: {
-    SET_LOGGED_IN(state, value) {
-      state.user.loggedIn = value;
-    },
-    SET_USER(state, data) {
-      state.user.data = data;
-    }
-  },
-  actions: {
-    async signup(context, inputs: LoginCredentials) {
-      await createUserWithEmailAndPassword(auth, inputs.email, inputs.password).then(async (createUser) => {
-        context.commit('SET_USER', createUser.user)
-        // // getDoc(doc(db,''));
-        // await addDoc(collection(db, 'users', createUser.user.uid), {})
-      }).catch((error) => {
-        console.log(error)
-        throw new Error('Unable to register user')
-      })
-    },
+    [K in keyof Getters]: ReturnType<Getters[K]>
+  }
+}
 
-    async login(context, inputs: LoginCredentials) {
-      const response = await signInWithEmailAndPassword(auth, inputs.email, inputs.password)
-      if (response) {
-        context.commit('SET_USER', response.user)
-      } else {
-        throw new Error('login failed')
-      }
-    },
-
-    async fetchUser(context, user) {
-      context.commit("SET_LOGGED_IN", user !== null);
-      if (user) {
-        context.commit("SET_USER", {
-          displayName: user.displayName,
-          email: user.email
-        });
-      } else {
-        context.commit("SET_USER", null);
-      }
-    },
-
-    async logout(context) {
-      await signOut(auth)
-      context.commit('SET_USER', null)
-    }
-  },
+export const store = createStore<State>({
+  state,
+  getters,
+  mutations,
+  actions,
   modules: {},
 });
+
+export function useStore() {
+  return store as Store
+}
