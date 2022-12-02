@@ -1,32 +1,39 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-import Home from "@/views/Home.vue";
-import Login from '@/views/auth/Login.vue';
+import About from "@/views/About.vue";
+import Login from '@/views/Login.vue';
+import NotFound from '@/views/NotFound.vue';
 import { useStore } from "@/store";
 
 const routes: Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    component: Page,
-    children: [
-      {
-        path: '',
-        name: 'Dashboard',
-        component: Dashboard,
-        auth: true
-      },
-      {
-        path: 'users',
-        name: 'Users',
-        component: Users,
-        auth: true
-      }
-    ]
-  },
+  // {
+  //   path: '/',
+  //   component: Page,
+  //   children: [
+  //     {
+  //       path: '',
+  //       name: 'Dashboard',
+  //       component: Dashboard,
+  //       auth: true
+  //     },
+  //     {
+  //       path: 'users',
+  //       name: 'Users',
+  //       component: Users,
+  //       auth: true
+  //     }
+  //   ]
+  // },
   {
     path: "/login",
     name: "Login",
     component: Login,
     meta: { layout: 'empty' },
+  },
+  {
+    path: '/dashboard',
+    name: 'About',
+    component: About,
+    // meta: { layout: 'empty' },
   },
   { path: '/:pathMatch(.*)*', redirect: '/404' },
 ];

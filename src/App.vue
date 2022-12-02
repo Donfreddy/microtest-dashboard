@@ -8,11 +8,13 @@
 import {computed, defineComponent} from 'vue';
 import {useRouter} from 'vue-router';
 
-const defaultLayout = 'default';
+const defaultLayout = 'dashboard';
 
 export default defineComponent({
   setup() {
     const {currentRoute} = useRouter();
+
+    console.log();
 
     const layout = computed(
         () => `${currentRoute.value.meta.layout || defaultLayout}-layout`,

@@ -95,13 +95,15 @@ export default defineComponent({
     const handleSubmit = async () => {
       isLoading.value = true;
       try {
-        await store.dispatch(ActionTypes.LOGIN, {
+        store.dispatch(ActionTypes.LOGIN, {
           email: email.value,
           password: password.value
         })
         isLoading.value = false;
-        await router.push('/about');
+        await router.push('/dashboard');
       } catch (err: any) {
+        console.log(err);
+        
         isLoading.value = false;
         switch (err.code) {
           case 'auth/invalid-email':
