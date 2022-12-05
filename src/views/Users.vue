@@ -170,8 +170,8 @@ export default defineComponent({
   async setup() {
     let users = ref<IUser[]>([]);
     const querySnapshot = await getDocs(collection(db, "users"));
+    users.value = [];
     querySnapshot.docChanges().forEach((change) => {
-      users.value = [];
       users.value.push({
         key: change.doc.id,
         name: change.doc.data().name,
@@ -180,9 +180,7 @@ export default defineComponent({
         phone: change.doc.data().phone_number,
         status: 'Active'
       })
-      console.log(change.doc.id, " => ", change.doc.data());
     });
-
     return {
       users,
     };

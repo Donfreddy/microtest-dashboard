@@ -10,8 +10,7 @@ export type Mutations<S = State> = {
 export const mutations: MutationTree<State> & Mutations = {
   [MutationTypes.SET_LOGGED_IN](state, payload: boolean) {
     state.user.loggedIn = payload;
-    localStorage.setItem('test', String(payload))
-    localStorage.getItem('userId')
+    localStorage.setItem('loggedIn', String(payload))
   },
   [MutationTypes.SET_USER](state, payload: UserData) {
     state.user.data = payload;
