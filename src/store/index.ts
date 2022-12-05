@@ -1,16 +1,23 @@
-import { createStore, Store as VuexStore, CommitOptions, DispatchOptions } from "vuex";
-import { Getters, getters } from "./getters";
-import { Mutations, mutations } from "./mutations";
-import { Actions, actions } from "./actions";
+import {createStore, Store as VuexStore, CommitOptions, DispatchOptions} from "vuex";
+import {Getters, getters} from "./getters";
+import {Mutations, mutations} from "./mutations";
+import {Actions, actions} from "./actions";
 
 export interface State {
   user: UserState
 }
 
+export const isLoggedIn = (): boolean => {
+  if (localStorage.getItem('loggedIn')) {
+    return localStorage.getItem('loggedIn') === 'true'
+  }
+  return false;
+};
+
 // Create initial state
 const state: State = {
   user: {
-    loggedIn: false,
+    loggedIn: isLoggedIn(),
     data: null
   }
 }
@@ -45,6 +52,4 @@ export const store = createStore<State>({
   modules: {},
 });
 
-export function useStore() {
-  return store as Store
-}
+export const useStore = (): Store => (store as Store);

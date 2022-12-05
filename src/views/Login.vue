@@ -100,7 +100,7 @@ export default defineComponent({
           password: password.value
         })
         isLoading.value = false;
-        await router.push('/dashboard');
+        await router.push('/');
       } catch (err: any) {
         console.log(err);
         

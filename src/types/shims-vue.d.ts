@@ -9,3 +9,10 @@ declare interface LoginCredentials {
   email: string;
   password: string;
 }
+
+declare interface CreateUserData {
+  name: string,
+  email: string,
+  password: string,
+  phone: string,
+}
