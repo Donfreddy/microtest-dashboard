@@ -8,7 +8,7 @@ const axiosInstance = axios.create({
   }
 });
 
-//  Withdraw funds
+// Withdraw funds
 export async function withdrawMoney(playload: WithdrawReq) {
   try {
     const { data } = await axiosInstance.post<WithdrawRes>(`/withdraw/`, JSON.stringify(playload));
@@ -18,6 +18,7 @@ export async function withdrawMoney(playload: WithdrawReq) {
   }
 }
 
+// Transaction Status
 export async function getTransactionStatus(reference: string) {
   try {
     const { data } = await axiosInstance.get<StatusRes>(`/transaction/${reference}/`);
