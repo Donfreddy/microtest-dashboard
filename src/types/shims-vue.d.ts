@@ -1,6 +1,6 @@
 /* eslint-disable */
 declare module '*.vue' {
-  import type { DefineComponent } from 'vue'
+  import type {DefineComponent} from 'vue'
   const component: DefineComponent<{}, {}, any>
   export default component
 }
@@ -18,9 +18,9 @@ declare interface CreateUserData {
 }
 
 declare type UserData = {
-  displayName: string | null,
-  email: string | null
-}
+    displayName: string | null,
+    email: string | null
+  }
   | null
 
 declare type UserState = {
@@ -38,6 +38,11 @@ declare interface WithdrawReq {
   to: string,
   description: string,
   external_reference?: string
+}
+
+declare interface TokenRes {
+  token: string,
+  expires_in: string
 }
 
 declare interface StatusRes {
