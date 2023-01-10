@@ -2,7 +2,7 @@
   <div class="">
     <div class="mb-10">
       <h4 class="text-sm font-bold text-gray-600">Welcome,</h4>
-      <h1 class="text-2xl font-bold text-indigo-900">Don freddy</h1>
+      <h1 class="text-2xl font-bold text-indigo-900">Test Account</h1>
     </div>
     <div class="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
       <div
@@ -23,7 +23,7 @@
               Total Users
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-              6389
+              4
             </p>
           </div>
         </div>
@@ -48,7 +48,7 @@
               Total Revenue
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-              46,760.00 XAF
+              233.00 XAF
             </p>
           </div>
         </div>
@@ -78,7 +78,7 @@
               Total Transactions
             </p>
             <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
-              376
+              16
             </p>
           </div>
         </div>
@@ -102,13 +102,13 @@
             <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
               Pending contacts
             </p>
-            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">35</p>
+            <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">25</p>
           </div>
         </div>
       </div>
     </div>
 
-    <!--    Users table-->
+    <!--    Transaction table-->
     <div class="w-full bg-white shadow-lg rounded-sm border border-gray-200">
       <header class="px-5 py-4 border-b border-gray-100">
         <h2 class="font-semibold text-gray-800">Last Transactions</h2>
@@ -163,7 +163,8 @@
               <td class="p-2 whitespace-nowrap">
                 <div class=" text-left text-red-500">Cash Out</div>
               </td>
-            </tr>   <tr>
+            </tr>
+            <tr>
               <td class="p-2 whitespace-nowrap">
                 <div class="font-medium text-gray-800">SD534DFS485SD</div>
               </td>
@@ -197,26 +198,17 @@
 </template>
 
 <script lang="ts">
-import {computed, defineComponent} from 'vue';
-import {useRouter} from 'vue-router';
-
-const defaultLayout = 'default';
+import {defineComponent} from 'vue';
+import {useStore} from "@/store";
 
 export default defineComponent({
-  setup() {
-    const {currentRoute} = useRouter();
-
-    console.log("This is the current route");
-    console.log(currentRoute);
-
-    const layout = computed(
-        () => `${currentRoute.value.meta.layout || defaultLayout}-layout`,
-    );
-
-    console.log(layout.value)
+   setup() {
+    const store = useStore()
+    const user = store.getters.user;
+    console.log(user);
 
     return {
-      layout,
+      //
     };
   },
 });

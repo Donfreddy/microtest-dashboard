@@ -2,18 +2,6 @@
   <div class="">
     <h1 class="text-xl">Add User</h1>
 
-    <div v-if="error"
-      class="flex max-w-sm bg-red-100 border-l-4 rounded-sm border-red-500  text-sm text-red-700 p-3 my-4" role="alert">
-      <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd"
-          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-          clip-rule="evenodd"></path>
-      </svg>
-      <div>
-        <span class="font-medium">{{ error }}</span>
-      </div>
-    </div>
-
     <!--    form-->
     <div class="w-full max-w-sm ">
       <form class="mt-8 " @submit.prevent="handleSubmit">
@@ -73,6 +61,7 @@ import { defineComponent, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from "@/store";
 import { ActionTypes } from "@/store/action-types";
+import {useToast} from "vue-toastification";
 
 export default defineComponent({
   setup() {
@@ -80,11 +69,11 @@ export default defineComponent({
     const email2 = ref('');
     const password2 = ref('');
     const phone = ref('');
-    const error = ref()
     const isLoading = ref(false)
 
     const store = useStore()
     const router = useRouter();
+    const toast = useToast();
 
     const handleSubmit = async () => {
       isLoading.value = true;
@@ -96,10 +85,11 @@ export default defineComponent({
           phone: phone.value
         })
         isLoading.value = false;
+        toast.success('User was successfully added.');
         await router.push('/users');
-      } catch (err: any) {
+      } catch (err) {
         isLoading.value = false;
-        error.value = err.message ?? err.code;
+        toast.error(err.message ?? err.code);
       }
     }
 
@@ -109,7 +99,6 @@ export default defineComponent({
       email2,
       password2,
       phone,
-      error,
       isLoading,
       handleSubmit,
     };

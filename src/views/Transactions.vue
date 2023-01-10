@@ -6,36 +6,54 @@
       </div>
 
       <!--      -->
-      <div class="flex flex-col my-2 sm:flex-row">
-        <div class="flex flex-row mb-1 sm:mb-0">
-          <div class="relative">
-            <select
-                class="block w-full h-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-white border border-gray-400 rounded-l appearance-none focus:outline-none focus:bg-white focus:border-gray-500">
-              <option>5</option>
-              <option>10</option>
-              <option>20</option>
-            </select>
-            <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-              <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-              </svg>
+      <div class="flex flex-col sm:flex-row items-center justify-between">
+        <div class="flex flex-col my-2 sm:flex-row">
+          <div class="flex flex-row mb-1 sm:mb-0">
+            <div class="relative">
+              <select
+                  class="block w-full h-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-white border border-gray-400 rounded-l appearance-none focus:outline-none focus:bg-white focus:border-gray-500">
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+              </select>
+              <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+                <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="relative">
+              <select
+                  class="block w-full h-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-white border-t border-b border-r border-gray-400 rounded-r appearance-none sm:rounded-r-none sm:border-r-0 focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                <option value="all">All</option>
+                <option value="cashou
+                t">Cash out</option>
+                <option value="cashin">Cash in</option>
+              </select>
+              <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+                <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="relative">
+              <select
+                  class="block w-full h-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-white border border-gray-400 rounded-r appearance-none sm:rounded-r-none sm:border-r-0 focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
+                <option>All Dates</option>
+                <option>Today</option>
+                <option>Yesterday</option>
+                <option>This Week</option>
+                <option>This Month</option>
+                <option>This Year</option>
+              </select>
+              <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+                <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                  <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                </svg>
+              </div>
             </div>
           </div>
-          <div class="relative">
-            <select
-                class="block w-full h-full px-4 py-2 pr-8 leading-tight text-gray-700 bg-white border-t border-b border-r border-gray-400 rounded-r appearance-none sm:rounded-r-none sm:border-r-0 focus:outline-none focus:border-l focus:border-r focus:bg-white focus:border-gray-500">
-              <option>All</option>
-              <option>Active</option>
-              <option>Inactive</option>
-            </select>
-            <div class="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
-              <svg class="w-4 h-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-        <div class="relative block">
+          <div class="relative block">
           <span class="absolute inset-y-0 left-0 flex items-center h-full pl-2">
             <svg viewBox="0 0 24 24" class="w-4 h-4 text-gray-500 fill-current">
               <path
@@ -43,8 +61,15 @@
               </path>
             </svg>
           </span>
-          <input placeholder="Search"
-                 class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"/>
+            <input placeholder="Search"
+                   class="block w-full py-2 pl-8 pr-6 text-sm text-gray-700 placeholder-gray-400 bg-white border border-b border-gray-400 rounded-l rounded-r appearance-none sm:rounded-l-none focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none"/>
+          </div>
+          <div>
+
+          </div>
+        </div>
+        <div class="font-semibold text-gray-600 mr-1">
+          Totals: {{ transactions.length }}
         </div>
       </div>
 
@@ -58,13 +83,13 @@
                 Transaction ID
               </th>
               <th class="px-4 py-3 tracking-wider">
-                Amount
+                Amount (XAF)
               </th>
               <th class="px-4 py-3 tracking-wider">
                 Phone
               </th>
 
-              <th class="px-4 py-3 tracking-wider text-center">
+              <th class="px-4 py-3 tracking-wider">
                 Type
               </th>
               <th class="px-4 py-3 tracking-wider">
@@ -187,7 +212,7 @@
     <Modal v-show="isRejectModalVisible" @close="closeRejectModal">
       <template v-slot:header>
         <p class="text-2xl font-bold">
-          Accept transaction
+          Reject transaction
         </p>
       </template>
       <template v-slot:body>
@@ -216,7 +241,7 @@
 import {defineComponent, ref} from 'vue';
 import moment from 'moment';
 import {db} from "@/firebase/config";
-import {collection, doc, getDocs, getDoc, updateDoc, Timestamp} from "firebase/firestore";
+import {collection, query, orderBy, doc, getDoc, updateDoc, Timestamp, onSnapshot} from "firebase/firestore";
 import Modal from "../components/Modal.vue";
 import {getTransactionStatus, withdrawMoney} from "@/api/transactions.api";
 import {useToast} from "vue-toastification";
@@ -246,28 +271,40 @@ export default defineComponent({
     // Get toast interface
     const toast = useToast();
 
-    const querySnapshot = await getDocs(collection(db, "transactions"));
-    transactions.value = [];
-    querySnapshot.docChanges().forEach((change) => {
-      transactions.value.push({
-        transactionId: change.doc.id,
-        amount: change.doc.data().amount,
-        phone: change.doc.data().phone,
-        provider: change.doc.data().provider,
-        status: change.doc.data().status,
-        userId: change.doc.data().userId,
-        manualConfirm: change.doc.data().manual_confirm,
-        type: change.doc.data().type,
-        date: change.doc.data().date,
-      })
+    // set interval Id
+    // eslint-disable-next-line no-undef
+    let intervalId = ref<NodeJS.Timeout>();
+
+    // get real-time documents updates
+    const q = query(collection(db, "transactions"), orderBy("date", "desc"));
+     onSnapshot(q, {includeMetadataChanges: true}, (querySnapshot) => {
+      transactions.value = [];
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data())
+        console.log(`Document Id: ${doc.id}`)
+        transactions.value.push({
+          transactionId: doc.data().id,
+          amount: doc.data().amount,
+          phone: doc.data().phone,
+          provider: doc.data().provider,
+          status: doc.data().status,
+          userId: doc.data().userId,
+          manualConfirm: doc.data().manual_confirm,
+          type: doc.data().type,
+          date: doc.data().date,
+        })
+      });
     });
-    transactions.value.sort((t1, t2) => t2.date.toDate().getTime() - t1.date.toDate().getTime());
+
+    // sort transaction by using date as inputField
+
 
     return {
       transactions,
       isAcceptModalVisible,
       isRejectModalVisible,
       toast,
+      intervalId,
     };
   },
   methods: {
@@ -276,15 +313,15 @@ export default defineComponent({
     },
     getType: function name(type: string) {
       if (type === 'cashint') {
-        return 'Cash In'
+        return 'Cash in'
       } else {
-        return 'Cash Out'
+        return 'Cash out'
       }
     },
     generateId: function () {
       let digits = '0123456789';
       let Id = '';
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 8; i++) {
         Id += digits[Math.floor(Math.random() * 10)];
       }
       return Id;
@@ -310,7 +347,7 @@ export default defineComponent({
         if (!setIntervalId) {
           // call function here
         }
-        setInterval(async () => {
+        this.intervalId = setInterval(async () => {
           const [error, res] = await getTransactionStatus(response.reference)
           console.log('Status: ' + res?.status)
 
@@ -320,10 +357,10 @@ export default defineComponent({
             await this.updateUserBalance(transaction.userId, transaction.amount)
             await this.updateTransactionStatus(transaction.transactionId, 'success')
             this.toast.success('The transaction was approved by the administration');
-            clearInterval();
+            clearInterval(this.intervalId);
           } else if (res?.status === 'FAILED') {
             await this.updateTransactionStatus(transaction.transactionId, 'fail')
-            clearInterval()
+            clearInterval(this.intervalId)
           }
 
           // log error
@@ -380,7 +417,10 @@ export default defineComponent({
       } else {
         this.toast.info('No such document!');
       }
-    }
+    },
+    // getByTransactionType:function (type:string) {
+    //
+    // }
   }
 });
 </script>

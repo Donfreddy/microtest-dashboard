@@ -13,6 +13,8 @@ export const mutations: MutationTree<State> & Mutations = {
     localStorage.setItem('loggedIn', String(payload))
   },
   [MutationTypes.SET_USER](state, payload: UserData) {
+    console.log("############ PayLoad")
+    console.log(payload)
     state.user.data = payload;
   },
 }

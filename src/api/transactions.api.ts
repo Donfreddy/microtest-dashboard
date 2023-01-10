@@ -28,6 +28,7 @@ axiosInstance.interceptors.response.use(async (response) => {
   return response
 }, async (error: AxiosError) => {
   if (error.response?.status === 401) {
+    console.log('Token was expired');
     localStorage.removeItem('token');
     await getAccessToken();
   }
@@ -35,9 +36,11 @@ axiosInstance.interceptors.response.use(async (response) => {
 
 // Withdraw fund
 export async function withdrawMoney(payload: WithdrawReq): Promise<(null | WithdrawRes)[]> {
+  console.log(payload);
   try {
-    const {data} = await axiosInstance.post<WithdrawRes>(`/withdraw/`, JSON.stringify(payload));
-    return [null, data];
+    const rs = await axiosInstance.post(`/withdraw/`, JSON.stringify(payload));
+    console.log(rs)
+    return [null, rs.data];
   } catch (error) {
     return [error];
   }
